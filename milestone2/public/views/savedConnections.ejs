@@ -1,0 +1,45 @@
+<%- include ('./includes/head.ejs') %>
+<main>
+    <div class="table-heading">
+        <p><%=name%> Choices</p>
+    </div>
+    <% if (connection!=null &&  connection.connections.length>0) { %>
+    <table>
+      <tr>
+        <th>Event Name</th>
+        <th>Category</th>
+        <th>Choice</th>
+        <th></th>
+      </tr>
+      
+      <% connection.connections.forEach(function(item){ %>
+      <tr>
+        <td><%= item.userConnection.connName %></td>
+        <td><%= item.userConnection.topic %></td>
+        <td><%= item.userConnection.rsvp %></td>
+        
+        <td>
+          
+    <form action="/connection?" >
+       
+      <input type="hidden" name="connectionID" value="<%= item.userConnection.connId %>" />  
+      <input type="hidden" name="action" value="update" />
+        <button type="submit" class="button-sconnection-update" >Update</button>
+    </form>
+    
+     <form action="/savedConnections?" >    
+      <input type="hidden" name="action" value="delete" />  
+      <input type="hidden" name="connectionId" value="<%= item.userConnection.connId %>" />  
+         <button type="submit" class="button-sconnection-delete" >Delete</button>
+     </form>
+     </td>
+      </tr>
+
+      <% });%>
+      
+    </table>
+    <%}else{%>
+      <p>You do not have any events RSVP'ed to right now.....</p>
+      <%}%>
+    </main>
+    <%- include ('./includes/end.ejs') %>

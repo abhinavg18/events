@@ -1,0 +1,31 @@
+<%- include ('./includes/head.ejs') %>
+<main>
+<form action="#" >
+    <table>
+        <tr>
+        <td>Topic</td>
+        <td><input type="text" name="topic" ></td>
+        </tr>
+        <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" ></td>
+        </tr>
+        <tr>
+            <td>Details</td>
+            <td><textarea name="details" rows="4" cols="50" ></textarea></td>
+        </tr>
+        <tr>
+            <td>Where</td>
+            <td><input type="text" name="where" ></td>
+            </tr>
+        <tr>
+            <td>When</td>
+            <td><input type="datetime-local" name="datetime" ></td>
+        </tr>
+        <tr>
+        <td colspan="2"><input type="submit" value="Create New Connection"></td>
+        </tr>
+    </table>
+</form>
+</main>
+<%- include ('./includes/end.ejs') %>

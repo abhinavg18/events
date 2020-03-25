@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/assets/stylesheet/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="backdrop"></div>
+<div class="wholepage">
+	<div class="first-header">
+		<nav class="main-header__nav">
+		<a href="/"><img src="/assets/images/logo.png" alt="logo"></a>
+		<div class="company-heading">
+            EventZilla
+        </div>
+			<div class="topnav-right">
+			 <ul class="main-header__item-list">
+            	<li class="main-header__item">
+            		<a href="/newConnection">Create New Event</a>
+				</li>
+				<% if (loggedIn==false){%>
+                <li class="main-header__item">
+                    <a href="/login">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a href="/savedConnections">Signup</a>
+                </li>
+				<%} else{%> 
+				<li class="main-header__item">
+					<a href="savedConnections">My Events</a>
+				</li>
+                <li class="main-header__item">
+                    <a href="logout">Logout</a>
+                </li>
+				<%}%>
+        	  </ul>
+        	</div>
+   		 </nav>
+
+	</div>
+	<hr>
+<header class="main-header">
+    
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item"> 
+            	<a  href="/connections">Events</a>               
+            </li>
+           
+        </ul>
+        <div class="topnav-right">
+			<% if (loggedIn==true){%>
+			<p>Welcome <%=name%></p>
+			<%}%>
+        </div>
+
+    </nav>
+</header>

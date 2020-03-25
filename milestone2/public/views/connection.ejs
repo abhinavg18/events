@@ -1,0 +1,57 @@
+<%- include ('./includes/head.ejs') %>
+
+<main>
+    <div class="list-product">
+       <div class="list-product-item-left">
+            <div class="heading">
+            <h3><%= connection.name %></h3>
+        </div>
+             
+            <div class="img-left">
+                <img src="/assets/images/standup.png" alt="standup" class="img-conn">
+            </div>
+            <div class="img-text-right">
+             <span>   Hosted by </span>- Dream Entertainer <br>
+              <span>  Date </span>- <%= connection.date %>   <br>
+                <span>Time </span>- <%= connection.time %> <br>
+                <span>Location </span>- Cone 213, UNC Charlotte<br>
+             </div>
+            
+      
+       </div>
+       
+       <div class="list-product-item-right">
+                Are you going? <span class="going"> 3 People Interested</span> <br>
+                <form action="/savedConnections?"> 
+                    <input type="hidden" name="action" value=<%= action %> />  
+                    <input type="hidden" name="connectionId" value="<%= connection.connectionId %>" />  
+                    <button type="submit" class="yes" name="rsvp" value="Yes">Yes</button>
+                </form>
+                <form action="/savedConnections?"> 
+                    <input type="hidden" name="action" value=<%= action %> />  
+                    <input type="hidden" name="connectionId" value="<%= connection.connectionId %>" />  
+                    <button type="submit" class="no" name="rsvp" value="No">No</button>
+                </form>
+                <form action="/savedConnections?"> 
+                    <input type="hidden" name="action" value=<%=action %> />  
+                    <input type="hidden" name="connectionId" value="<%= connection.connectionId %>" />  
+                    <button type="submit" class="maybe" name="rsvp" value="Maybe">Maybe</button>
+                </form>
+
+            
+       </div>
+
+
+   </div>
+   
+     <div class="list-product-detail">
+        <div>
+            <h4>Description</h4>
+        </div>
+        <div>
+        <p class="des-text"><%=connection.details%></p>
+       </div>
+   </div>
+      
+</main>
+<%- include ('./includes/end.ejs') %>
