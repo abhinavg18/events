@@ -2,10 +2,10 @@ var express= require('express');
 var session= require('express-session');
 var app=express();
 
+
 var index= require('./routes/index.js');
-var usercontroller= require('./routes/usercontroller/usercontroller.js');
-var loginController= require('./routes/usercontroller/login.js');
-var logoutController= require('./routes/usercontroller/logout.js');
+var usercontroller= require('./routes/usercontroller.js');
+
 app.set('view engine', 'ejs');
 // for images and css we use this
 app.use('/assets',express.static('assets'));
@@ -26,9 +26,8 @@ app.use(function(req,res,next){
 });
 
 //calling the controller on the / url
-app.use('/savedConnections',usercontroller);
-app.use('/login',loginController);
-app.use('/logout',logoutController);
+app.use('/',usercontroller);
+
 app.use('/', index);
 
 //runs on port localhost:8084/

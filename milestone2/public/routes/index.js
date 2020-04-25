@@ -15,9 +15,10 @@ router.get('/connection', function(req,res){
         tag=req.session.loggedIn;
         name=req.session.username;
     }
+    console.log(req.query);
     connectionDb.getConnection(req.query.connectionID,function (data){
-        
-        
+        console.log("inside index after getting connection")
+        console.log(data);
         if (data==null){
         res.status(400).redirect('/connections'); 
             return;
@@ -29,8 +30,10 @@ router.get('/connection', function(req,res){
             }else{
                 act="add";
             }
-            
-        res.render('connection',{connection:data,title:"Event", loggedIn:tag,name:name,action:act});
+            data.forEach(element => {
+                console.log(element.connectionId)
+            });
+        res.render('connection',{connection:data[0],title:"Event", loggedIn:tag,name:name,action:act});
             return;
     }
         
@@ -45,6 +48,8 @@ router.get('/connections', function(req,res){
     var tag=false;
     var name=""
     if (req.session && req.session.loggedIn){
+        console.log(req.session)
+        console.log(req.session.username);
         tag=req.session.loggedIn;
         name=req.session.username;
     }

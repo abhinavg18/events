@@ -1,41 +1,28 @@
-module.exports= class UserProfile{
-    constructor(userId, fName, lName, email, address){
-        this.userId=userId;
-        this.fName=fName;
-        this.lName=lName;
-        this.email=email;
-        this.address=address;
-    }
 
-    get getUserId(){
-        return this.userId;
-    }
+//************************** */
 
-    get getFName(){
-        return this.fName;
-    }
-    get getLName(){
-        return this.lName;
-    }
-    get getEmail(){
-        return this.email;
-    }
-    get getAddress(){
-        return this.address;
-    }
-    set setUserId(value){
-        this.userId = value;
-    }
-    set setFName(value){
-        this.fName = value;
-    }
-    set setLName(value){
-        this.lName = value;
-    }
-    set setEmail(value){
-        this.email = value;
-    }
-    set setAddress(value){
-        this.address = value;
-    }
+var mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
+var userProfileSchema = new mongoose.Schema({
+    user: {
+    type: mongoose.Schema.Types.Mixed,
+    ref:'User',
+    required: true
+  },
+  userConnections: {
+    type: Array,
+    required: true
+  }
+}, { collection: "UserProfileDB" });
+
+module.exports = mongoose.model("UserProfile", userProfileSchema);
+UserProfile=mongoose.model("UserProfile", userProfileSchema);
+module.exports.createUser=async function(u,cb){
+  var newProfilemodel= new UserProfile ({"user":u,"userConnections":[]});
+    await newProfilemodel.save(function (err, nprofile) {
+        if (err) console.log(err);
+        console.log(nprofile + " saved to profile collection.");
+        cb([nprofile]);
+        //cb(newProfilemodel)
+      });
 }
